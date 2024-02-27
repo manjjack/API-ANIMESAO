@@ -59,18 +59,18 @@ export class UserService {
   }
 
   async login(
-    email: string,
+    username: string,
     password: string,
   ): Promise<{ user: User; accessToken: string }> {
     // Procura o usuário pelo nome de usuário na base de dados
-    const user = await this.userRepository.findOne({ where: { email } });
+    const user = await this.userRepository.findOne({ where: { username } });
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Credenciais inválidas');
     }
 
     // Gera o token de acesso JWT com base nos dados do usuário
-    const payload = { email: user.email, sub: user.userId };
+    const payload = { username: user.username, sub: user.userId };
     const accessToken = this.jwtService.sign(payload);
 
     return { user, accessToken };

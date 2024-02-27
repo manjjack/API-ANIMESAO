@@ -1,6 +1,7 @@
 import { Historic } from 'src/historic/entities/historic.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Anime } from 'src/anime/entities/anime.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 @Entity()
 export class Episode {
   @PrimaryGeneratedColumn()
@@ -30,4 +31,7 @@ export class Episode {
 
   @OneToMany(() => Historic, historic => historic.episode)
   historics: Historic[];
+  
+  @OneToMany(() => Comment, comment => comment.episode)
+  comments: Comment[];
 }

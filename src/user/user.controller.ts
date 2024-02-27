@@ -69,14 +69,14 @@ export class UserController {
   }
   
   @Post('login')
-  async login(@Body() body: { email: string, password: string }): Promise<{ user: User, accessToken: string }> {
-    const { email, password } = body;
+  async login(@Body() body: { username: string, password: string }): Promise<{ user: User, accessToken: string }> {
+    const { username, password } = body;
 
     try {
-      const { user, accessToken } = await this.userService.login(email, password);
+      const { user, accessToken } = await this.userService.login(username, password);
       return { user, accessToken };
     } catch (error) {
-      const { user, accessToken } = await this.userService.login(email, password);
+      const { user, accessToken } = await this.userService.login(username, password);
       throw new UnauthorizedException('Credenciais inválidas');
       return { user, accessToken };
     }

@@ -40,4 +40,5 @@ export class Anime {
 
   @OneToMany(() => Episode, episode => episode.anime)
   episodes: Episode[];
+
 }

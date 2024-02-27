@@ -8,6 +8,7 @@ import { FavoriteModule } from './favorite/favorite.module';
 import { HistoricModule } from './historic/historic.module';
 import { AnimetypeModule } from './animetype/animetype.module';
 import { GenreModule } from './genre/genre.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { GenreModule } from './genre/genre.module';
       secret: 'AAO',
       // signOptions: { expiresIn: '1h' }, // Configuração opcional para definir o tempo de expiração do token
     }),
+    CommentsModule,
   ],
   controllers: [],
   providers: [],
