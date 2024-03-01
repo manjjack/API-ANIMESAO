@@ -2,6 +2,7 @@ import { Favorite } from 'src/favorite/entities/favorite.entity';
 import { Genre } from 'src/genre/entities/genre.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { Episode } from 'src/episode/entities/episode.entity';
+import { Rating } from 'src/rating/entities/rating.entity';
 @Entity()
 export class Anime {
   @PrimaryGeneratedColumn()
@@ -15,9 +16,6 @@ export class Anime {
 
   @Column()
   imagemUrl: string;
-
-  @Column()
-  classificacao: number;
 
   @Column()
   dataLancamento: Date;
@@ -40,5 +38,7 @@ export class Anime {
 
   @OneToMany(() => Episode, episode => episode.anime)
   episodes: Episode[];
-
+  
+  @OneToMany(() => Rating, rating => rating.anime)
+  ratings: Rating[];
 }

@@ -27,6 +27,6 @@ export class Historic {
   @JoinColumn({ name: 'episodioId' })
   episode: Episode;
 
-  @Column()
+  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   dataVisualizacao: Date;
 }

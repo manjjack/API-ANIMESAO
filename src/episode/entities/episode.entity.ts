@@ -10,8 +10,8 @@ export class Episode {
   @Column()
   animeId: number;
 
-  @ManyToOne(() => Anime, anime => anime.episodes) // Define a relação com Anime
-  @JoinColumn({ name: 'animeId' }) // Especifica o nome da coluna na tabela Episode que armazena a chave estrangeira
+  @ManyToOne(() => Anime, anime => anime.episodes) 
+  @JoinColumn({ name: 'animeId' }) 
   anime: Anime;
 
   @Column()
@@ -28,6 +28,9 @@ export class Episode {
 
   @Column()
   servidorHospedagem: string;
+
+  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  dataVisualizacao: Date;
 
   @OneToMany(() => Historic, historic => historic.episode)
   historics: Historic[];

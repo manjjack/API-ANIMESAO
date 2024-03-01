@@ -2,24 +2,25 @@ import { Favorite } from 'src/favorite/entities/favorite.entity';
 import { Historic } from 'src/historic/entities/historic.entity';
 import { PrimaryGeneratedColumn, Column, Entity, OneToMany } from 'typeorm';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { Rating } from 'src/rating/entities/rating.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   userId: number;
 
-  @Column()
+  @Column({unique: true})
   username: string;
 
-  @Column()
+  @Column({unique: true})
   email: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   dataCadastro: Date;
 
-  @Column()
+  @Column({nullable:true})
   imgUrl: string;
   
   @OneToMany(() => Historic, historic => historic.user)
@@ -30,5 +31,8 @@ export class User {
   
   @OneToMany(() => Comment, comment => comment.user)
   comments: Comment[];
+
+  @OneToMany(() => Rating, rating => rating.user)
+  ratings: Rating[];
 
 }

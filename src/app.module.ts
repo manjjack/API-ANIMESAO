@@ -9,6 +9,7 @@ import { HistoricModule } from './historic/historic.module';
 import { AnimetypeModule } from './animetype/animetype.module';
 import { GenreModule } from './genre/genre.module';
 import { CommentsModule } from './comments/comments.module';
+import { RatingModule } from './rating/rating.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CommentsModule } from './comments/comments.module';
       // signOptions: { expiresIn: '1h' }, // Configuração opcional para definir o tempo de expiração do token
     }),
     CommentsModule,
+    RatingModule,
   ],
   controllers: [],
   providers: [],
