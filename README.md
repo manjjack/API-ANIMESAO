@@ -72,6 +72,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-=======
-# API-LibraryHub
 
+=======
+# API-ANIMESAO
+API para site de animes "AnimesAO"
+>>>>>>> 703089aefb70aece2f772cd3de88e82757cae9a3
