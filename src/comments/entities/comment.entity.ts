@@ -11,7 +11,7 @@ export class Comment {
   @Column()
   content: string;
 
-  @Column({ type: 'datetime' })
+  @Column()
   dateTime: Date;
 
   @ManyToOne(() => User, user => user.comments)
