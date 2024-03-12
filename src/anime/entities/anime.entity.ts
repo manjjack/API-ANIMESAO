@@ -27,6 +27,9 @@ export class Anime {
   estudio: string;
 
   @Column()
+  status: string;
+
+  @Column()
   numeroEpisodios: number;
   
   @ManyToMany(() => Genre, genre => genre.genero)
