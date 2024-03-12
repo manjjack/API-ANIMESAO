@@ -17,7 +17,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   dataCadastro: Date;
 
   @Column({nullable:true})
