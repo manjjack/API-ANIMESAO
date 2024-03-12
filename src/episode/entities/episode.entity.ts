@@ -29,7 +29,7 @@ export class Episode {
   @Column()
   servidorHospedagem: string;
 
-  @Column()
+  @Column({ default: () => 'CURRENT_TIMESTAMP' })
   dataVisualizacao: Date;
 
   @OneToMany(() => Historic, historic => historic.episode)

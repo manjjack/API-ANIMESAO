@@ -17,7 +17,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ default: () => 'CURRENT_TIMESTAMP' })
   dataCadastro: Date;
 
   @Column({nullable:true})
@@ -34,5 +34,4 @@ export class User {
 
   @OneToMany(() => Rating, rating => rating.user)
   ratings: Rating[];
-
 }
