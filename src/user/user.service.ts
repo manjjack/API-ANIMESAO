@@ -75,4 +75,9 @@ export class UserService {
 
     return { user, accessToken };
   }
+
+  public async changeStatusUser(user: User) {
+    user.status = true;
+  }
+
 }

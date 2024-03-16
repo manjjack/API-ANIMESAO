@@ -22,6 +22,9 @@ export class User {
 
   @Column({nullable:true})
   imgUrl: string;
+
+  @Column({default: false})
+  status: boolean;
   
   @OneToMany(() => Historic, historic => historic.user)
   historics: Historic[];

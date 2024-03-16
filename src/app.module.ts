@@ -10,6 +10,7 @@ import { AnimetypeModule } from './animetype/animetype.module';
 import { GenreModule } from './genre/genre.module';
 import { CommentsModule } from './comments/comments.module';
 import { RatingModule } from './rating/rating.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { RatingModule } from './rating/rating.module';
     }),
     CommentsModule,
     RatingModule,
+    AdminModule,
   ],
   controllers: [],
   providers: [],
