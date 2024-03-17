@@ -5,7 +5,8 @@ import {
   Body,
   Patch,
   Param,
-  Delete, UnauthorizedException
+  Delete,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
@@ -67,18 +68,26 @@ export class UserController {
       throw error;
     }
   }
-  
+
   @Post('login')
-  async login(@Body() body: { username: string, password: string }): Promise<{ user: User, accessToken: string }> {
+  async login(
+    @Body() body: { username: string; password: string },
+  ): Promise<{ user: User; accessToken: string }> {
     const { username, password } = body;
 
     try {
-      const { user, accessToken } = await this.userService.login(username, password);
+      const { user, accessToken } = await this.userService.login(
+        username,
+        password,
+      );
+
       return { user, accessToken };
     } catch (error) {
-      const { user, accessToken } = await this.userService.login(username, password);
+      const { user } = await this.userService.login(username, password);
+      if (!user.status) {
+        throw new UnauthorizedException('Conta inativa');
+      }
       throw new UnauthorizedException('Credenciais inválidas');
-      return { user, accessToken };
     }
   }
 }

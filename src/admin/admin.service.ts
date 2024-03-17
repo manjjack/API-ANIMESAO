@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
 import { Repository, UpdateResult, DeleteResult, EntityManager } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -80,5 +80,26 @@ export class AdminService {
       throw error;
     }
   }
+
+  async login(
+    username: string,
+    password: string,
+  ): Promise<{ admin: Admin; accessToken: string }> {
+    // Procura o usuário pelo nome de usuário na base de dados
+    const admin = await this.userRepository.findOne({ where: { username } });
+
+    if (!admin || !(await bcrypt.compare(password, admin.password))) {
+      throw new UnauthorizedException('Credenciais inválidas');
+    }
+
+    // Gera o token de acesso JWT com base nos dados do usuário
+    const payload = { username: admin.username, sub: admin.adminId };
+    const accessToken = this.jwtService.sign(payload);
+
+    return { admin, accessToken };
+  }
+
+
+
 
 }
