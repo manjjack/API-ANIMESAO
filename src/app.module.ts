@@ -11,8 +11,7 @@ import { GenreModule } from './genre/genre.module';
 import { CommentsModule } from './comments/comments.module';
 import { RatingModule } from './rating/rating.module';
 import { AdminModule } from './admin/admin.module';
-import { ResponseModule } from './response/response.module';
-import { ReplyModule } from './reply/reply.module';
+
 
 @Module({
   imports: [
@@ -30,8 +29,6 @@ import { ReplyModule } from './reply/reply.module';
     CommentsModule,
     RatingModule,
     AdminModule,
-    ResponseModule,
-    ReplyModule,
   ],
   controllers: [],
   providers: [],

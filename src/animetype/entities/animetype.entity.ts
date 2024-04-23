@@ -14,6 +14,7 @@ export class Animetype {
 
   @Column()
   animeId: number;
+  
   @ManyToOne(() => Anime, (anime) => anime.genero)
   @JoinColumn({ name: 'animeId' })
   anime: Anime;

@@ -3,6 +3,8 @@ import { Genre } from 'src/genre/entities/genre.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { Episode } from 'src/episode/entities/episode.entity';
 import { Rating } from 'src/rating/entities/rating.entity';
+import { Animetype } from 'src/animetype/entities/animetype.entity';
+
 @Entity()
 export class Anime {
   @PrimaryGeneratedColumn()
@@ -31,6 +33,9 @@ export class Anime {
 
   @Column()
   numeroEpisodios: number;
+
+  @Column()
+  audio: string;
   
   @ManyToMany(() => Genre, genre => genre.genero)
   @JoinTable({ name: 'genero' })
@@ -44,4 +49,9 @@ export class Anime {
   
   @OneToMany(() => Rating, rating => rating.anime)
   ratings: Rating[];
+
+  @OneToMany(() => Animetype, animetype => animetype.anime)
+  animetype: Animetype[];
+
+  
 }

@@ -22,6 +22,9 @@ export class User {
 
   @Column({nullable:true})
   imgUrl: string;
+  
+  @Column({nullable:true})
+  capa: string;
 
   @Column({default: false})
   status: boolean;

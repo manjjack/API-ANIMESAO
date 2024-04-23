@@ -2,7 +2,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Episode } from 'src/episode/entities/episode.entity';
-import { Reply } from 'src/reply/entities/reply.entity';
+
 
 @Entity()
 export class Comment {
@@ -21,7 +21,7 @@ export class Comment {
   @ManyToOne(() => Episode, episode => episode.comments)
   episode: number;
 
-  @OneToMany(() => Reply, reply => reply.comment)
-  replies: Reply[];
+ // @OneToMany(() => Reply, reply => reply.comment)
+  //replies: Reply[];
 
 }
