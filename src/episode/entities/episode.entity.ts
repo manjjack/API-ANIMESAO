@@ -1,5 +1,12 @@
 import { Historic } from 'src/historic/entities/historic.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Anime } from 'src/anime/entities/anime.entity';
 import { Comment } from 'src/comments/entities/comment.entity';
 @Entity()
@@ -10,8 +17,8 @@ export class Episode {
   @Column()
   animeId: number;
 
-  @ManyToOne(() => Anime, anime => anime.episodes) 
-  @JoinColumn({ name: 'animeId' }) 
+  @ManyToOne(() => Anime, (anime) => anime.episodes)
+  @JoinColumn({ name: 'animeId' })
   anime: Anime;
 
   @Column()
@@ -26,15 +33,18 @@ export class Episode {
   @Column()
   urlVideo: string;
 
-  @Column()
+  @Column({ nullable: true })
   servidorHospedagem: string;
 
   @Column({ default: () => 'CURRENT_TIMESTAMP' })
   dataVisualizacao: Date;
 
-  @OneToMany(() => Historic, historic => historic.episode)
+  @Column()
+  numeroDaTemporada: number;
+
+  @OneToMany(() => Historic, (historic) => historic.episode)
   historics: Historic[];
-  
-  @OneToMany(() => Comment, comment => comment.episode)
+
+  @OneToMany(() => Comment, (comment) => comment.episode)
   comments: Comment[];
 }

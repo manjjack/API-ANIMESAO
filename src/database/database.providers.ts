@@ -10,7 +10,7 @@ export const databaseProviders = [
         port: 22764,
         username: 'avnadmin',
         password: 'AVNS_Koyqb7fRA1JCi5sElzm',
-        database: 'defaultdb',
+        database: 'animesaobd',
         /*type: 'mysql',
         host: 'localhost',
         port: 3306,

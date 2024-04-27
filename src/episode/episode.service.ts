@@ -51,4 +51,11 @@ export class EpisodeService {
     const resultado: DeleteResult = await this.repository.delete(id);
     return resultado;
   }
+
+  async findEpisodeByTemporada(numeroDaTemporada: number){
+    return this.repository
+    .createQueryBuilder('episode')
+    .where('episode.numeroDaTemporada = :numeroDaTemporada', { numeroDaTemporada })
+    .getMany();
+  }
 }

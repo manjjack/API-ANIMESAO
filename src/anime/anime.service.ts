@@ -172,7 +172,7 @@ export class AnimeService {
       .andWhere('anime.status = :status', { status })
       .getMany();
   }
-  
+
   // audio e year
 
   async findByAudioAndYear(audio: string, ano: number): Promise<Anime[]> {
@@ -266,7 +266,7 @@ export class AnimeService {
   ): Promise<Anime[]> {
     const dataInicio = new Date(ano, 0, 1); // Primeiro dia do ano
     const dataFim = new Date(ano, 11, 31, 23, 59, 59); // Último segundo do ano
-  
+
     return this.repository
       .createQueryBuilder('anime')
       .leftJoinAndSelect('anime.genero', 'genre')
@@ -280,7 +280,6 @@ export class AnimeService {
       .andWhere('anime.audio = :audio', { audio })
       .getMany();
   }
-  
 
   // status audio
 
@@ -332,7 +331,6 @@ export class AnimeService {
     audio?: string,
     ano?: number,
   ): Promise<Anime[]> {
-
     if (status === 'null' || status === undefined) {
       status = null;
     }
@@ -379,9 +377,6 @@ export class AnimeService {
     } else if (!status && !ano && !audio && genero) {
       return this.findByGenero(genero);
     }
-  
-
-
 
     return query.getMany();
   }
