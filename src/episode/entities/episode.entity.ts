@@ -42,6 +42,9 @@ export class Episode {
   @Column()
   numeroDaTemporada: number;
 
+  @Column()
+  dataLancamento: Date;
+
   @OneToMany(() => Historic, (historic) => historic.episode)
   historics: Historic[];
 
