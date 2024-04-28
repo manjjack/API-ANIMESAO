@@ -1,4 +1,5 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import * as cors from 'cors';
 import { UserModule } from './user/user.module';
@@ -16,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     UserModule,
     AnimeModule,
     EpisodeModule,
