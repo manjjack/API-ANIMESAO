@@ -13,7 +13,7 @@ export class Anime {
   @Column({unique: true})
   titulo: string;
 
-  @Column()
+  @Column({ length: 3000 })
   descricao: string;
 
   @Column()
