@@ -42,4 +42,17 @@ export class EpisodeController {
   async delete(@Param('id') id: string): Promise<DeleteResult> {
     return this.episodeService.delete(+id);
   }
+
+  @Get('temporada/:numeroDaTemporada')
+  async findEpisodeByTemporada(
+    @Param('numeroDaTemporada') numeroDaTemporada: number,
+  ) {
+    try {
+      const episodes =
+        await this.episodeService.findEpisodeByTemporada(numeroDaTemporada);
+      return episodes;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

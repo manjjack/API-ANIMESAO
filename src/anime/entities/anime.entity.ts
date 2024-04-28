@@ -10,7 +10,7 @@ export class Anime {
   @PrimaryGeneratedColumn()
   animeId: number;
 
-  @Column()
+  @Column({unique: true})
   titulo: string;
 
   @Column()

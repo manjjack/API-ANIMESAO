@@ -21,7 +21,7 @@ export class Episode {
   @JoinColumn({ name: 'animeId' })
   anime: Anime;
 
-  @Column()
+  @Column({unique: true})
   numeroEpisodio: number;
 
   @Column()
@@ -30,7 +30,7 @@ export class Episode {
   @Column()
   sinopseEpisodio: string;
 
-  @Column()
+  @Column({unique: true})
   urlVideo: string;
 
   @Column({ nullable: true })
