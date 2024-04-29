@@ -13,7 +13,7 @@ export class EpisodeService {
     return this.repository.find();
   }
 
-  async create(episode: Episode,idAnime: number): Promise<Episode> {
+  async create(episode: Episode ,idAnime: number): Promise<Episode> {
     episode.animeId = idAnime;
     return this.repository.save(episode);
   }

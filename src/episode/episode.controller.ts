@@ -26,8 +26,12 @@ export class EpisodeController {
   }
 
   @Post()
-  async create(@Body('animeId') animeId: number): Promise<Episode> {
-    return this.episodeService.create(animeId);
+  async create(
+    @Body() episode: Episode,
+    @Body('animeId') idAnime: number,
+  ): Promise<Episode> {
+    episode.animeId = idAnime;
+    return this.episodeService.create(episode, idAnime);
   }
 
   @Put(':id')
