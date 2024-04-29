@@ -13,14 +13,11 @@ export class EpisodeService {
     return this.repository.find();
   }
 
-  async create(idAnime: number): Promise<Episode> {
-    // Cria uma nova instância de Animestype com os IDs do anime e do genero
-    const episode = new Episode();
+  async create(episode: Episode,idAnime: number): Promise<Episode> {
     episode.animeId = idAnime;
-
-    // Salva o objeto AnimeType no banco de dados
     return this.repository.save(episode);
   }
+
 
   async update(id: number, updatedEpisode: Partial<Episode>): Promise<Episode> {
     const updateResult: UpdateResult = await this.repository.update(
