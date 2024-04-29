@@ -55,4 +55,12 @@ export class EpisodeService {
     .where('episode.numeroDaTemporada = :numeroDaTemporada', { numeroDaTemporada })
     .getMany();
   }
+
+  async findEpisodesByAnimeId(animeId: number): Promise<Episode[]> {
+    return this.repository.find({
+      where: {
+        animeId: animeId,
+      },
+    });
+  }
 }

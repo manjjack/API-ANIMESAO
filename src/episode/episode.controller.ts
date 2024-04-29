@@ -59,4 +59,9 @@ export class EpisodeController {
       throw error;
     }
   }
+
+  @Get('anime/:animeId')
+  async findEpisodesByAnimeId(@Param('animeId') animeId: string): Promise<Episode[]> {
+    return this.episodeService.findEpisodesByAnimeId(parseInt(animeId));
+  }
 }
