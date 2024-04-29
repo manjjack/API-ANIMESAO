@@ -16,7 +16,7 @@ export class Anime {
   @Column({ length: 4000 })
   descricao: string;
 
-  @Column()
+  @Column({ length: 1500 })
   imagemUrl: string;
 
   @Column()
