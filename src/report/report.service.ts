@@ -49,7 +49,7 @@ export class ReportService {
   }
 
   async findAll() {
-    this.repository.find();
+    return this.repository.find();
   }
 
   async solveReport(idReport: number) {
