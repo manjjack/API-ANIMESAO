@@ -1,22 +1,24 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Report } from './entities/report.entity';
+import { ReportError } from './entities/report.entity';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class ReportService {
-  /*
   constructor(
     @Inject('REPORT_REPOSITORY')
-    private readonly repository: Repository<Report>,
+    private readonly repository: Repository<ReportError>,
   ) {}
-  
-  create(report: Report, animeId: number, episodeId: number) {
+
+  create(report: ReportError, animeId: number, episodeId: number) {
     report.animeId = animeId;
     report.episodioId = episodeId;
     this.repository.save(report);
   }
 
-  async update(id: number, updatedReport: Partial<Report>): Promise<Report> {
+  async update(
+    id: number,
+    updatedReport: Partial<ReportError>,
+  ): Promise<ReportError> {
     const updateResult: UpdateResult = await this.repository.update(
       id,
       updatedReport,
@@ -25,7 +27,7 @@ export class ReportService {
     if (updateResult.affected === 0) {
       throw new Error(' não encontrado ou a atualização falhou');
     }
-    const report: Report = await this.repository.findOne({
+    const report: ReportError = await this.repository.findOne({
       where: {
         idReport: id,
       },
@@ -33,7 +35,7 @@ export class ReportService {
     return report;
   }
 
-  async findOne(id: number): Promise<Report> {
+  async findOne(id: number): Promise<ReportError> {
     return await this.repository.findOne({
       where: {
         idReport: id,
@@ -53,7 +55,7 @@ export class ReportService {
   async solveReport(idReport: number) {
     const change = false;
     this.repository
-      .createQueryBuilder('report')
-      .where('report.status :change', { change });
-  }*/
+      .createQueryBuilder('reportError')
+      .where('reportError.status :change', { change });
+  }
 }

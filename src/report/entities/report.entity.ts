@@ -3,7 +3,7 @@ import { Episode } from 'src/episode/entities/episode.entity';
 import { Column, Entity, PrimaryColumn, ManyToOne, JoinColumn} from 'typeorm';
 
 @Entity()
-export class Report {
+export class ReportError {
   @PrimaryColumn()
   idReport: number;
 
