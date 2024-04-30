@@ -112,6 +112,6 @@ export class AnimeController {
 
   @Get('recent')
   async findRecentAnimesOfYear(): Promise<Anime[]> {
-    return this.animeService.findRecentAnimesOfYear();
+    return this.animeService.findAllAnimesOfYear();
   }
 }
