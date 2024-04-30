@@ -52,19 +52,17 @@ export class AnimeService {
   }
   
   // retorna os animes mais recentes em 1 ano 
-  async findAllAnimesOfYear(): Promise<Anime[]> {
-    const today = new Date();
-    const year = today.getFullYear();
-    const startDate = new Date(year, 0, 1); // Janeiro 1º
-    const endDate = new Date(year, 11, 31, 23, 59, 59); // Dezembro 31º, 23:59:59
+  async findAllAnimesOfYear(ano:number): Promise<Anime[]> {
+    const dataInicio = new Date(ano, 0, 1); // Primeiro dia do ano
+    const dataFim = new Date(ano, 11, 31, 23, 59, 59); // Último segundo do ano
 
     return this.repository.find({
       where: {
-        dataLancamento: Between(startDate, endDate),
+        dataLancamento: Between(dataInicio, dataFim),
       },
       order: {
-        dataLancamento: 'DESC',
-      },
+        dataLancamento: 'DESC'
+      }
     });
   }
 
