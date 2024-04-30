@@ -47,21 +47,18 @@ export class EpisodeController {
     return this.episodeService.delete(+id);
   }
 
-  @Get('temporada/:numeroDaTemporada')
-  async findEpisodeByTemporada(
-    @Param('numeroDaTemporada') numeroDaTemporada: number,
-  ) {
-    try {
-      const episodes =
-        await this.episodeService.findEpisodeByTemporada(numeroDaTemporada);
-      return episodes;
-    } catch (error) {
-      throw error;
-    }
-  }
+  
 
   @Get('anime/:animeId')
   async findEpisodesByAnimeId(@Param('animeId') animeId: string): Promise<Episode[]> {
     return this.episodeService.findEpisodesByAnimeId(parseInt(animeId));
+  }
+
+  @Get(':animeId/seasons/:seasonNumber')
+  async findEpisodesByAnimeAndSeason(
+    @Param('animeId') animeId: number,
+    @Param('seasonNumber') seasonNumber: number,
+  ): Promise<Episode[]> {
+    return await this.episodeService.findEpisodesByAnimeAndSeason(animeId, seasonNumber);
   }
 }

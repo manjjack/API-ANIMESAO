@@ -13,11 +13,10 @@ export class EpisodeService {
     return this.repository.find();
   }
 
-  async create(episode: Episode ,idAnime: number): Promise<Episode> {
+  async create(episode: Episode, idAnime: number): Promise<Episode> {
     episode.animeId = idAnime;
     return this.repository.save(episode);
   }
-
 
   async update(id: number, updatedEpisode: Partial<Episode>): Promise<Episode> {
     const updateResult: UpdateResult = await this.repository.update(
@@ -49,11 +48,22 @@ export class EpisodeService {
     return resultado;
   }
 
-  async findEpisodeByTemporada(numeroDaTemporada: number){
-    return this.repository
-    .createQueryBuilder('episode')
-    .where('episode.numeroDaTemporada = :numeroDaTemporada', { numeroDaTemporada })
-    .getMany();
+  async findEpisodesByAnimeAndSeason(
+    animeId: number,
+    seasonNumber: number,
+  ): Promise<Episode[]> {
+    try {
+      const episodes = await this.repository
+        .createQueryBuilder('episode')
+        .leftJoinAndSelect('episode.anime', 'anime')
+        .where('anime.animeId = :animeId', { animeId })
+        .andWhere('episode.numeroDaTemporada = :seasonNumber', { seasonNumber })
+        .getMany();
+
+      return episodes;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findEpisodesByAnimeId(animeId: number): Promise<Episode[]> {
