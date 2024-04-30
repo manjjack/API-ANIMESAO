@@ -13,12 +13,9 @@ export class HistoricService {
     return this.repository.find();
   }
 
-  async create(idUser: number, idEpisode: number): Promise<Historic> {
-    // Cria uma nova instância de Animestype com os IDs do anime e do genero
-    const historic = new Historic();
+  async create(historic: Historic, idUser: number, idEpisode: number): Promise<Historic> {
     historic.userId = idUser;
     historic.episodeId = idEpisode;
-
     return this.repository.save(historic);
   }
 

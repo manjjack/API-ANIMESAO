@@ -7,9 +7,9 @@ import { Anime } from 'src/anime/entities/anime.entity';
 export class RatingController {
   constructor(private readonly ratingService: RatingService) {}
 
-  @Post(':animeId/:userId')
-  async create(@Param('animeId') animeId: number, @Param('userId') userId: number): Promise<Rating> {
-    return this.ratingService.create(animeId, userId);
+  @Post()
+  async create(@Body() rating: Rating, @Body('animeId') animeId: number, @Body('userId') userId: number): Promise<Rating> {
+    return this.ratingService.create(rating,animeId, userId);
   }
 
   @Put(':id')

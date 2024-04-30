@@ -11,12 +11,19 @@ export const databaseProviders = [
       ) as 'mysql' | 'postgres'; 
 
       const dataSource = new DataSource({
+        /*
         type: dbType,
         host: configService.get<string>('DB_HOST'),
         port: configService.get<number>('DB_PORT'),
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_DATABASE'),
+        database: configService.get<string>('DB_DATABASE'),*/
+        type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: '',
+        database: 'animesao',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
       });

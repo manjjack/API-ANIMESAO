@@ -23,10 +23,10 @@ export class AnimetypeController {
   }
 
   @Post()
-  async create(
+  async create(@Body() animeType: Animetype,
     @Body() animetypeData: { animeId: number; generoId: number },
   ): Promise<Animetype> {
-    return this.animeTypeService.create(
+    return this.animeTypeService.create(animeType,
       animetypeData.animeId,
       animetypeData.generoId,
     );

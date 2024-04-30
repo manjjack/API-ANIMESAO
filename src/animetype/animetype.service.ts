@@ -18,9 +18,8 @@ export class AnimeTypeService {
     return this.repository.find();
   }
 
-  async create(idAnime: number, idGenre: number): Promise<Animetype> {
+  async create(animetype: Animetype, idAnime: number, idGenre: number): Promise<Animetype> {
     // Cria uma nova instância de Animestype com os IDs do anime e do genero
-    const animetype = new Animetype();
     animetype.animeId = idAnime;
     animetype.generoId = idGenre;
 

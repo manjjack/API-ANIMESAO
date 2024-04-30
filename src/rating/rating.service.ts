@@ -8,16 +8,16 @@ export class RatingService {
   constructor(
     @Inject('RATING_REPOSITORY')
     private repository: Repository<Rating>,
-    @Inject("ANIME_REPOSITORY")
+    @Inject('ANIME_REPOSITORY')
     private readonly animeRepository: Repository<Anime>,
   ) {}
-  async create(idAnime: number, idUser: number): Promise<Rating> {
-    // Cria uma nova instância de Animestype com os IDs do anime e do genero
-    const rating = new Rating();
+  async create(
+    rating: Rating,
+    idAnime: number,
+    idUser: number,
+  ): Promise<Rating>{
     rating.animeId = idAnime;
     rating.userId = idUser;
-
-    // Salva o objeto AnimeType no banco de dados
     return this.repository.save(rating);
   }
 
@@ -64,13 +64,12 @@ export class RatingService {
     return animeWithRatings;
   }
 
-  async findRatingAnime(idAnime:number, idUser:number): Promise<Rating>{
+  async findRatingAnime(idAnime: number, idUser: number): Promise<Rating> {
     return await this.repository.findOne({
-      where:{
-        animeId : idAnime,
-        userId : idUser
-      }
+      where: {
+        animeId: idAnime,
+        userId: idUser,
+      },
     });
-
   }
 }

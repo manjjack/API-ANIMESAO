@@ -27,10 +27,11 @@ export class HistoricController {
 
   @Post()
   async create(
+    @Body() historic: Historic,
     @Body('userId') userId: number,
     @Body('episodeId') episodeId: number,
   ): Promise<Historic> {
-    return this.historicService.create(userId, episodeId);
+    return this.historicService.create(historic,userId, episodeId);
   }
 
   @Put(':id')

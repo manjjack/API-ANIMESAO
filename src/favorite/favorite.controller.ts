@@ -5,7 +5,7 @@ import {
   Body,
   Put,
   Param,
-  Delete,
+  Delete, 
 } from '@nestjs/common';
 import { FavoriteService } from './favorite.service';
 import { Favorite } from './entities/favorite.entity';
@@ -27,10 +27,11 @@ export class FavoriteController {
 
   @Post()
   async create(
+    @Body() favorite: Favorite,
     @Body('animeId') animeId: number,
     @Body('userId') userId: number,
   ): Promise<Favorite> {
-    return this.favoriteService.create(animeId, userId);
+    return this.favoriteService.create(favorite, animeId, userId);
   }
 
   @Put(':id')

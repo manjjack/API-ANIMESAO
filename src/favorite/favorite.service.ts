@@ -13,9 +13,8 @@ export class FavoriteService {
     return this.repository.find();
   }
 
-  async create(idAnime: number, idUser: number): Promise<Favorite> {
+  async create(favorite: Favorite,idAnime: number, idUser: number): Promise<Favorite> {
     // Cria uma nova instância de Animestype com os IDs do anime e do genero
-    const favorite = new Favorite();
     favorite.animeId = idAnime;
     favorite.userId = idUser;
 

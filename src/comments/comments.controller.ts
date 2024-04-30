@@ -12,8 +12,8 @@ export class CommentsController {
   }
 
   @Post()
-  async create(@Body() commentData: Comment): Promise<Comment> {
-    return this.commentService.create(commentData.user, commentData.episode);
+  async create(@Body() commentData: Comment, @Body('idUser') idUser:number, @Body('idEpisode') idEpisode: number ): Promise<Comment> {
+    return this.commentService.create(commentData, idUser, idEpisode);
   }
 
   @Put(':id')

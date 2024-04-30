@@ -50,6 +50,24 @@ export class AnimeService {
       },
     });
   }
+  
+  // retorna os animes mais recentes em 1 ano 
+  async findRecentAnimesOfYear(): Promise<Anime[]> {
+    const today = new Date();
+    const year = today.getFullYear();
+  
+    const startDate = new Date(year, 0, 1); // January 1st
+    const endDate = new Date(year, 11, 31, 23, 59, 59); // December 31st, 11:59 PM
+  
+    // Build the query to find animes within the current year
+    const query = this.repository.createQueryBuilder('anime');
+    query.where('anime.dataLancamento BETWEEN :startDate AND :endDate', {
+      startDate,
+      endDate,
+    });
+    query.orderBy('anime.dataLancamento', 'DESC'); 
+    return query.getMany();
+  }
 
   // ordem alfabetica
   async findAnimesByInitialLetter(initialLetter: string): Promise<Anime[]> {
@@ -379,5 +397,40 @@ export class AnimeService {
     }
 
     return query.getMany();
+  }
+
+  async filterAnimes2(
+    status?: string,
+    genero?: string,
+    audio?: string,
+    ano?: number,
+  ): Promise<Anime[]> {
+    // Objeto para armazenar os filtros ativos
+    const filtros: { [chave: string]: string | number | null } = {
+      status: status ?? null,
+      //genero: genero ?? null,
+      audio: audio ?? null,
+      //ano: ano ?? null,
+    };
+
+    // Construtor da consulta
+    let consulta = this.repository.createQueryBuilder('anime');
+    let clausulaWhere = '';
+
+    // Filtros ativos (com valores não nulos)
+    const filtrosAtivos = Object.entries(filtros).filter(
+      ([chave, valor]) => valor !== null,
+    );
+
+    // Construção dinâmica da cláusula WHERE
+    if (filtrosAtivos.length > 0) {
+      clausulaWhere = filtrosAtivos
+        .map(([chave, valor]) => `${chave} = :${chave}`)
+        .join(' AND ');
+      consulta = consulta.where(clausulaWhere, filtros);
+    }
+
+    // Retorna os animes filtrados
+    return consulta.getMany();
   }
 }

@@ -13,13 +13,13 @@ export class CommentService {
     return this.repository.find();
   }
 
-  async create(idUser: number, idEpisode: number): Promise<Comment> {
-    // Cria uma nova instância de Animestype com os IDs do anime e do genero
-    const comment = new Comment();
+  async create(
+    comment: Comment,
+    idUser: number,
+    idEpisode: number,
+  ): Promise<Comment> {
     comment.user = idUser;
     comment.episode = idEpisode;
-
-    // Salva o objeto AnimeType no banco de dados
     return this.repository.save(comment);
   }
 

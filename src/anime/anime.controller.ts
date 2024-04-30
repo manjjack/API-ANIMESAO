@@ -76,7 +76,7 @@ export class AnimeController {
     @Param('audio') audio?: string,
     @Param('ano') ano?: number,
   ): Promise<Anime[]> {
-    return this.animeService.filterAnimes(status, genero, audio, ano);
+    return this.animeService.filterAnimes2(status, genero, audio, ano);
   }
 
   @Get('genero/:genero/audio/:audio')
@@ -108,5 +108,10 @@ export class AnimeController {
     @Param('ano', ParseIntPipe) ano: number,
   ): Promise<Anime[]> {
     return this.animeService.findByStatusAndYear(status, ano);
+  }
+
+  @Get('recent')
+  async findRecentAnimesOfYear(): Promise<Anime[]> {
+    return this.animeService.findRecentAnimesOfYear();
   }
 }

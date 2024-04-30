@@ -11,8 +11,7 @@ import { GenreModule } from './genre/genre.module';
 import { CommentsModule } from './comments/comments.module';
 import { RatingModule } from './rating/rating.module';
 import { AdminModule } from './admin/admin.module';
-
-
+import { ReportModule } from './report/report.module';
 
 @Module({
   imports: [
@@ -30,6 +29,7 @@ import { AdminModule } from './admin/admin.module';
     CommentsModule,
     RatingModule,
     AdminModule,
+    ReportModule,
   ],
   controllers: [],
   providers: [],

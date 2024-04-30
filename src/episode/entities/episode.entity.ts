@@ -50,4 +50,8 @@ export class Episode {
 
   @OneToMany(() => Comment, (comment) => comment.episode)
   comments: Comment[];
+
+ 
+
+  
 }
