@@ -52,10 +52,4 @@ export class ReportService {
     return this.repository.find();
   }
 
-  async solveReport(idReport: number) {
-    const change = false;
-    this.repository
-      .createQueryBuilder('reportError')
-      .where('reportError.status :change', { change });
-  }
 }

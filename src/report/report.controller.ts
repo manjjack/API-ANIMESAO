@@ -46,8 +46,4 @@ export class ReportController {
     await this.reportService.delete(id);
   }
 
-  @Post(':id/solve')
-  async solveReport(@Param('id') id: number): Promise<void> {
-    await this.reportService.solveReport(id);
-  }
 }
