@@ -50,6 +50,14 @@ export class AnimeService {
       },
     });
   }
+
+  async findAllMovies():Promise<Anime[]>{
+    return await this.repository.find({
+      where:{
+         filme: true,
+      },
+    })
+  }
   
   // retorna os animes mais recentes em 1 ano 
   async findAllAnimesOfYear(ano:number): Promise<Anime[]> {

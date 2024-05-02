@@ -114,4 +114,9 @@ export class AnimeController {
   async findRecentAnimesOfYear(@Param('anoAtual') ano:number): Promise<Anime[]> {
     return this.animeService.findAllAnimesOfYear(ano);
   }
+
+  @Get('movies')
+  async findAllMovies(): Promise<Anime[]> {
+    return await this.animeService.findAllMovies();
+  }
 }

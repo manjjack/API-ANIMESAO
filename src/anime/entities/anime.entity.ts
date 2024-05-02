@@ -36,6 +36,9 @@ export class Anime {
 
   @Column()
   audio: string;
+
+  @Column({nullable: true, default: false})
+  filme: boolean;
   
   @ManyToMany(() => Genre, genre => genre.genero)
   @JoinTable({ name: 'genero' })
