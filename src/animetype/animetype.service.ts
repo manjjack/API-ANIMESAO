@@ -15,13 +15,15 @@ export class AnimeTypeService {
     private genreRepository: Repository<Genre>,
   ) {}
 
-  
-
   async findAll(): Promise<Animetype[]> {
     return this.repository.find();
   }
 
-  async create(animetype: Animetype, idAnime: number, idGenre: number): Promise<Animetype> {
+  async create(
+    animetype: Animetype,
+    idAnime: number,
+    idGenre: number,
+  ): Promise<Animetype> {
     // Cria uma nova instância de Animestype com os IDs do anime e do genero
     animetype.animeId = idAnime;
     animetype.generoId = idGenre;
@@ -79,11 +81,10 @@ export class AnimeTypeService {
 
     return animes;
   }
-  
+
   // encontrar todos os registros de Animetype associados ao anime fornecido
- 
+
   async findAllGenresForAnime(animeId: number): Promise<Genre[]> {
-    
     const animeTypeRecords = await this.repository.find({
       where: {
         animeId: animeId,
