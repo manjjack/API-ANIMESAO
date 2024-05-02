@@ -65,7 +65,7 @@ export class AnimetypeController {
   }
 
   @Get('genres/:animeId')
-  async findAllGenresForAnime(@Param('animeId') animeId: string): Promise<Genre[]> {
-    return this.animeTypeService.findAllGenresForAnime(parseInt(animeId, 10));
+  async findAllGenresForAnime(@Param('animeId') animeId: number): Promise<Genre[]> {
+    return this.animeTypeService.findAllGenresForAnime(animeId);
   }
 }
