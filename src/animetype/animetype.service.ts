@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Animetype } from './entities/animetype.entity';
 import { Anime } from 'src/anime/entities/anime.entity';
+import { Genre } from 'src/genre/entities/genre.entity';
 
 @Injectable()
 export class AnimeTypeService {
@@ -10,6 +11,8 @@ export class AnimeTypeService {
     private repository: Repository<Animetype>,
     @Inject('ANIME_REPOSITORY')
     private animeRepository: Repository<Anime>,
+    @Inject('GENRE_REPOSITORY')
+    private genreRepository: Repository<Genre>,
   ) {}
 
   
@@ -75,5 +78,23 @@ export class AnimeTypeService {
     const animes = await this.animeRepository.findByIds(animeIds);
 
     return animes;
+  }
+  
+  // encontrar todos os registros de Animetype associados ao anime fornecido
+ 
+  async findAllGenresForAnime(animeId: number): Promise<Genre[]> {
+    
+    const animeTypeRecords = await this.repository.find({
+      where: {
+        animeId: animeId,
+      },
+    });
+
+    const genreIds = animeTypeRecords.map((animeType) => animeType.generoId);
+
+    // encontrar todos os registros de gênero correspondentes aos IDs obtidos
+    const genres = await this.genreRepository.findByIds(genreIds);
+
+    return genres;
   }
 }

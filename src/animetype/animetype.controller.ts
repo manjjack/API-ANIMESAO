@@ -12,6 +12,7 @@ import { Animetype } from './entities/animetype.entity';
 import { AnimeTypeService } from './animetype.service';
 import { DeleteResult } from 'typeorm';
 import { Anime } from 'src/anime/entities/anime.entity';
+import { Genre } from 'src/genre/entities/genre.entity';
 
 @Controller('animetype')
 export class AnimetypeController {
@@ -61,5 +62,10 @@ export class AnimetypeController {
   @Get('byGenre/:genreId')
   async getAnimesByGenre(@Param('genreId') genreId: number): Promise<Anime[]> {
     return this.animeTypeService.findByGenre(genreId);
+  }
+
+  @Get('genres/:animeId')
+  async findAllGenresForAnime(@Param('animeId') animeId: string): Promise<Genre[]> {
+    return this.animeTypeService.findAllGenresForAnime(parseInt(animeId, 10));
   }
 }
