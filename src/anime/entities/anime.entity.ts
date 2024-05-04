@@ -40,6 +40,12 @@ export class Anime {
   @Column({nullable: true, default: false})
   filme: boolean;
   
+  @Column({nullable: true, length: 4000 })
+  filmeSinopse: string;
+
+  @Column({nullable: true, length: 1500 })
+  filmeimg: string;
+  
   @ManyToMany(() => Genre, genre => genre.genero)
   @JoinTable({ name: 'genero' })
   genero: Genre[];
