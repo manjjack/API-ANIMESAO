@@ -47,6 +47,7 @@ export class AnimeService {
     return await this.repository.findOne({
       where: {
         animeId: id,
+        estreia: false,
       },
     });
   }
@@ -55,6 +56,7 @@ export class AnimeService {
     return await this.repository.find({
       where:{
          filme: true,
+         estreia: false,
       },
     })
   }
@@ -67,6 +69,7 @@ export class AnimeService {
     return this.repository.find({
       where: {
         dataLancamento: Between(dataInicio, dataFim),
+        estreia: false,
       },
       order: {
         dataLancamento: 'DESC'
@@ -89,6 +92,7 @@ export class AnimeService {
     return this.repository.find({
       where: {
         titulo: Like(`%${name}%`), // Usa Like para pesquisa parcial
+        estreia: false,
       },
     });
   }
@@ -98,6 +102,7 @@ export class AnimeService {
     return this.repository.find({
       where: {
         status: status,
+        estreia: false,
       },
     });
   }
@@ -108,6 +113,7 @@ export class AnimeService {
     return this.repository.find({
       where: {
         audio: audio,
+        estreia: false,
       },
     });
   }
@@ -120,6 +126,7 @@ export class AnimeService {
     return this.repository.find({
       where: {
         dataLancamento: Between(dataInicio, dataFim),
+        estreia: false,
       },
     });
   }
