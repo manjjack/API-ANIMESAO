@@ -1,16 +1,24 @@
 import { Favorite } from 'src/favorite/entities/favorite.entity';
 import { Genre } from 'src/genre/entities/genre.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+  OneToMany,
+} from 'typeorm';
 import { Episode } from 'src/episode/entities/episode.entity';
 import { Rating } from 'src/rating/entities/rating.entity';
 import { Animetype } from 'src/animetype/entities/animetype.entity';
+import { Slideshow } from 'src/slideshow/entities/slideshow.entity';
 
 @Entity()
 export class Anime {
   @PrimaryGeneratedColumn()
   animeId: number;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   titulo: string;
 
   @Column({ length: 4000 })
@@ -37,30 +45,31 @@ export class Anime {
   @Column()
   audio: string;
 
-  @Column({nullable: true, default: false})
+  @Column({ nullable: true, default: false })
   filme: boolean;
-  
-  @Column({nullable: true, length: 4000 })
+
+  @Column({ nullable: true, length: 4000 })
   filmeSinopse: string;
 
-  @Column({nullable: true, length: 1500 })
+  @Column({ nullable: true, length: 1500 })
   filmeimg: string;
-  
-  @ManyToMany(() => Genre, genre => genre.genero)
+
+  @ManyToMany(() => Genre, (genre) => genre.genero)
   @JoinTable({ name: 'genero' })
   genero: Genre[];
 
-  @OneToMany(() => Favorite, favorite => favorite.anime)
+  @OneToMany(() => Favorite, (favorite) => favorite.anime)
   favorite: Favorite[];
 
-  @OneToMany(() => Episode, episode => episode.anime)
+  @OneToMany(() => Episode, (episode) => episode.anime)
   episodes: Episode[];
-  
-  @OneToMany(() => Rating, rating => rating.anime)
+
+  @OneToMany(() => Slideshow, (Slideshow) => Slideshow.anime)
+  slideShow: Slideshow[];
+
+  @OneToMany(() => Rating, (rating) => rating.anime)
   ratings: Rating[];
 
-  @OneToMany(() => Animetype, animetype => animetype.anime)
+  @OneToMany(() => Animetype, (animetype) => animetype.anime)
   animetype: Animetype[];
-
-  
 }
