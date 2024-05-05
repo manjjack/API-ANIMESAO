@@ -21,7 +21,7 @@ export class Anime {
   @Column({ unique: true })
   titulo: string;
 
-  @Column({ length: 3000 })
+  @Column({ length: 4000 })
   descricao: string;
 
   @Column({ length: 1500 })
@@ -47,6 +47,12 @@ export class Anime {
 
   @Column({ nullable: true, default: false })
   filme: boolean;
+
+  @Column({ nullable: true, length: 4000 })
+  filmeSinopse: string;
+
+  @Column({ nullable: true, length: 1500 })
+  filmeimg: string;
 
   @Column({nullable: true, default: false})
   estreia: boolean;
