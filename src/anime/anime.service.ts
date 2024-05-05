@@ -67,10 +67,14 @@ export class AnimeService {
     const dataFim = new Date(ano, 11, 31, 23, 59, 59); // Último segundo do ano
 
     return this.repository.find({
-      where: {
+      where: [ {
         dataLancamento: Between(dataInicio, dataFim),
         estreia: false,
-      },
+      }, {
+        status: 'Em Lançamento' || 'Em Lancamento',
+        estreia: false,
+      }],
+
       order: {
         dataLancamento: 'DESC'
       }
