@@ -27,7 +27,7 @@ export class Episode {
   @Column()
   tituloEpisodio: string;
 
-  @Column({length: 6000})
+  @Column({length: 4000})
   sinopseEpisodio: string;
 
   @Column({unique: true, length: 4000})
@@ -51,7 +51,6 @@ export class Episode {
   @OneToMany(() => Comment, (comment) => comment.episode)
   comments: Comment[];
 
- 
 
   
 }
