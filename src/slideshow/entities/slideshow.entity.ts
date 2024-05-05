@@ -9,7 +9,7 @@ export class Slideshow {
   @Column()
   animeId: number;
 
-  @Column({ length: 1500 })
+  @Column()
   imgCapa: string;
 
   @Column({ nullable: true })
