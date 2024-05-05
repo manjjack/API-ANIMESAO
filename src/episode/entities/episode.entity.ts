@@ -27,13 +27,13 @@ export class Episode {
   @Column()
   tituloEpisodio: string;
 
-  @Column()
+  @Column({length: 6000})
   sinopseEpisodio: string;
 
-  @Column({unique: true})
+  @Column({unique: true, length: 4000})
   urlVideo: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, default: 'none'})
   servidorHospedagem: string;
 
   @Column({ default: () => 'CURRENT_TIMESTAMP' })
