@@ -21,7 +21,7 @@ export class ReportError {
   @JoinColumn({ name: 'episodioId' })
   Episode: Episode;
 
-  @Column({ length: 4000 })
+  @Column({ length: 3000 })
   message: string;
 
   @Column({ default: true })
