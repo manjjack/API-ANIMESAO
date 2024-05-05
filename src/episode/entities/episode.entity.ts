@@ -27,10 +27,10 @@ export class Episode {
   @Column()
   tituloEpisodio: string;
 
-  @Column({length: 3000})
+  @Column({length: 2000})
   sinopseEpisodio: string;
 
-  @Column({unique: true, length: 3000})
+  @Column({unique: true, length: 2000})
   urlVideo: string;
 
   @Column({ nullable: true, default: 'none'})
