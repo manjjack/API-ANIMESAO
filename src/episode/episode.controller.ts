@@ -10,6 +10,7 @@ import {
 import { EpisodeService } from './episode.service';
 import { Episode } from './entities/episode.entity';
 import { DeleteResult } from 'typeorm';
+import { Anime } from 'src/anime/entities/anime.entity';
 
 @Controller('episode')
 export class EpisodeController {
@@ -65,11 +66,16 @@ export class EpisodeController {
     );
   }
 
-  @Get('anime/:animeName')
+  @Get('animeName/:animeName')
   async findEpisodesByAnimeName(
     @Param('animeName') animeName: string,
   ): Promise<Episode[]> {
     return this.episodeService.findEpisodesByAnimeName(animeName);
+  }
+
+  @Get('anime/title/:titulo')
+  async findAnimeByTitle(@Param('titulo') titulo: string): Promise<Anime> {
+      return this.episodeService.findAnimeByTitle(titulo);
   }
 
 }

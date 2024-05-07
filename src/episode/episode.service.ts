@@ -78,19 +78,29 @@ export class EpisodeService {
   }
 
   async findEpisodesByAnimeName(animeName: string): Promise<Episode[]> {
-    // Procura pelo anime com o nome fornecido
     const anime = await this.animeRepository.findOne({
-      where: { titulo: animeName },
+      where: { titulo: String(animeName) },
     });
 
     if (!anime) {
-      // Se o anime não existir, lança uma exceção de não encontrado
       throw new NotFoundException('Anime não encontrado');
-    }else{
-      console.log('Anime encontrado')
+    } else {
+      console.log(anime);
     }
 
-    // Procura por episódios relacionados ao anime encontrado
+    // Procura por episódios
     return this.repository.find({ where: { animeId: anime.animeId } });
+  }
+
+  async findAnimeByTitle(title: string): Promise<Anime> {
+    const anime = await this.animeRepository.findOne({
+      where: { titulo: title },
+    });
+
+    if (!anime) {
+      throw new NotFoundException('Anime não encontrado');
+    }
+
+    return anime;
   }
 }
