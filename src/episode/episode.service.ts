@@ -73,4 +73,12 @@ export class EpisodeService {
       },
     });
   }
+
+  async findEpisodesByAnimeName(animeName: string): Promise<Episode[]> {
+    return this.repository
+      .createQueryBuilder('episode')
+      .innerJoin('episode.anime', 'anime')
+      .where('anime.titulo = :animeName', { animeName })
+      .getMany();
+  }
 }

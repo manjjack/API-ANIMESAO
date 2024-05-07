@@ -47,10 +47,10 @@ export class EpisodeController {
     return this.episodeService.delete(+id);
   }
 
-  
-
   @Get('anime/:animeId')
-  async findEpisodesByAnimeId(@Param('animeId') animeId: string): Promise<Episode[]> {
+  async findEpisodesByAnimeId(
+    @Param('animeId') animeId: string,
+  ): Promise<Episode[]> {
     return this.episodeService.findEpisodesByAnimeId(parseInt(animeId));
   }
 
@@ -59,6 +59,16 @@ export class EpisodeController {
     @Param('animeId') animeId: number,
     @Param('seasonNumber') seasonNumber: number,
   ): Promise<Episode[]> {
-    return await this.episodeService.findEpisodesByAnimeAndSeason(animeId, seasonNumber);
+    return await this.episodeService.findEpisodesByAnimeAndSeason(
+      animeId,
+      seasonNumber,
+    );
+  }
+
+  @Get('/anime/:animeName')
+  async findEpisodesByAnimeName(
+    @Param('animeName') animeName: string,
+  ): Promise<Episode[]> {
+    return this.episodeService.findEpisodesByAnimeName(animeName);
   }
 }
