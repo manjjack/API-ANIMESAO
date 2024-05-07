@@ -81,6 +81,14 @@ export class AnimeService {
     });
   }
 
+  async animeEmDestaque(){
+    return this.repository.find({
+      where: {
+          animeDestaque : true,
+      },
+    })
+  }
+
   // ordem alfabetica
   async findAnimesByInitialLetter(initialLetter: string): Promise<Anime[]> {
     return await this.repository

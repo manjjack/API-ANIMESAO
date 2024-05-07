@@ -5,7 +5,7 @@ import {
   Body,
   Put,
   Param,
-  Delete, Query,
+  Delete,
   ParseIntPipe,
 } from '@nestjs/common';
 import { AnimeService } from './anime.service';
@@ -82,7 +82,7 @@ export class AnimeController {
   @Get('genero/:genero/audio/:audio')
   async findByGenreAndRating(
     @Param('genero') genero: string,
-    @Param('audio') audio: string
+    @Param('audio') audio: string,
   ): Promise<Anime[]> {
     return this.animeService.findByGenreAndAudio(genero, audio);
   }
@@ -94,11 +94,18 @@ export class AnimeController {
     @Param('genero') genero: string,
     @Param('audio') audio: string,
   ): Promise<Anime[]> {
-    return this.animeService.findByStatusYearGenreAndAudio(status, ano, genero, audio);
+    return this.animeService.findByStatusYearGenreAndAudio(
+      status,
+      ano,
+      genero,
+      audio,
+    );
   }
 
   @Get('initial/:initialLetter')
-  async findAnimesByInitialLetter(@Param('initialLetter') initialLetter: string): Promise<Anime[]> {
+  async findAnimesByInitialLetter(
+    @Param('initialLetter') initialLetter: string,
+  ): Promise<Anime[]> {
     return this.animeService.findAnimesByInitialLetter(initialLetter);
   }
 
@@ -109,14 +116,22 @@ export class AnimeController {
   ): Promise<Anime[]> {
     return this.animeService.findByStatusAndYear(status, ano);
   }
-
+  
+  // animes do ano 
   @Get('recent/:anoAtual')
-  async findRecentAnimesOfYear(@Param('anoAtual') ano:number): Promise<Anime[]> {
+  async findRecentAnimesOfYear(
+    @Param('anoAtual') ano: number,
+  ): Promise<Anime[]> {
     return this.animeService.findAllAnimesOfYear(ano);
   }
 
   @Get('movies')
   async findAllMovies(): Promise<Anime[]> {
     return await this.animeService.findAllMovies();
+  }
+
+  @Get('destaque')
+  async findAnimesDestaque(): Promise<Anime[]> {
+    return this.animeService.animeEmDestaque();
   }
 }

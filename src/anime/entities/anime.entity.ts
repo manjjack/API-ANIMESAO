@@ -51,6 +51,9 @@ export class Anime {
   @Column({nullable: true, default: false})
   estreia: boolean;
 
+  @Column({nullable: true, default: false})
+  animeDestaque: boolean;
+
   @ManyToMany(() => Genre, (genre) => genre.genero)
   @JoinTable({ name: 'genero' })
   genero: Genre[];
