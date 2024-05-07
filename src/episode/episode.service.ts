@@ -1,12 +1,15 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { Repository, UpdateResult, DeleteResult } from 'typeorm';
+import { Injectable, Inject , NotFoundException} from '@nestjs/common';
+import { Repository, UpdateResult, DeleteResult} from 'typeorm';
 import { Episode } from './entities/episode.entity';
+import { Anime } from 'src/anime/entities/anime.entity';
 
 @Injectable()
 export class EpisodeService {
   constructor(
     @Inject('EPISODE_REPOSITORY')
     private repository: Repository<Episode>,
+    @Inject('ANIME_REPOSITORY')
+    private animeRepository: Repository<Anime>,
   ) {}
 
   async findAll(): Promise<Episode[]> {
@@ -75,11 +78,15 @@ export class EpisodeService {
   }
 
   async findEpisodesByAnimeName(animeName: string): Promise<Episode[]> {
-    return this.repository.find({
-      where: {
-        anime: { titulo: animeName },
-      },
-      relations: ['anime'],
-    });
+    // Procura pelo anime com o nome fornecido
+    const anime = await this.animeRepository.findOne({ where: { titulo: animeName } });
+    
+    if (!anime) {
+      // Se o anime não existir, lança uma exceção de não encontrado
+      throw new NotFoundException('Anime não encontrado');
+    }
+
+    // Procura por episódios relacionados ao anime encontrado
+    return this.repository.find({ where: { animeId: anime.animeId } });
   }
 }
