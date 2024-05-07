@@ -1,5 +1,5 @@
-import { Injectable, Inject , NotFoundException} from '@nestjs/common';
-import { Repository, UpdateResult, DeleteResult} from 'typeorm';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Episode } from './entities/episode.entity';
 import { Anime } from 'src/anime/entities/anime.entity';
 
@@ -79,11 +79,15 @@ export class EpisodeService {
 
   async findEpisodesByAnimeName(animeName: string): Promise<Episode[]> {
     // Procura pelo anime com o nome fornecido
-    const anime = await this.animeRepository.findOne({ where: { titulo: animeName } });
-    
+    const anime = await this.animeRepository.findOne({
+      where: { titulo: animeName },
+    });
+
     if (!anime) {
       // Se o anime não existir, lança uma exceção de não encontrado
       throw new NotFoundException('Anime não encontrado');
+    }else{
+      console.log('Anime encontrado')
     }
 
     // Procura por episódios relacionados ao anime encontrado
