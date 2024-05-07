@@ -65,9 +65,9 @@ export class EpisodeController {
     );
   }
 
-  @Get('anime/:animeName')
+  @Get('anime')
   async findEpisodesByAnimeName(
-    @Param('animeName') animeName: string,
+    @Body('animeName') animeName: string,
   ): Promise<Episode[]> {
     return this.episodeService.findEpisodesByAnimeName(animeName);
   }
