@@ -56,7 +56,6 @@ export class AnimeService {
     return await this.repository.find({
       where:{
          filme: true,
-         estreia: false,
       },
     })
   }
