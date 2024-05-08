@@ -127,7 +127,7 @@ export class AnimeController {
 
   @Get('movies')
   async findAllMovies(): Promise<Anime[]> {
-    return await this.animeService.findAllMovies();
+    return this.animeService.findAllMovies();
   }
 
   @Get('destaque')
