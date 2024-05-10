@@ -53,10 +53,12 @@ export class AnimeService {
   }
 
   async findAllMovies(): Promise<Anime[]> {
+    const val = true;
+    const unval = false;
     return await this.repository.find({
       where: {
-        filme: true,
-        estreia: false,
+        filme: val,
+        estreia: unval,
       },
     });
   }
