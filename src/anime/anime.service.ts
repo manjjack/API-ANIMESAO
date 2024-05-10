@@ -52,13 +52,13 @@ export class AnimeService {
     });
   }
 
-  async findAllMovies():Promise<Anime[]>{
+  async findAllMovies(): Promise<Anime[]> {
     return await this.repository.find({
-      where:{
-         filme: true,
-         estreia: false,
+      where: {
+        filme: true,
+        estreia: false,
       },
-    })
+    });
   }
   
   // retorna os animes mais recentes em 1 ano 
