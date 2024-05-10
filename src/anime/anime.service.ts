@@ -52,13 +52,13 @@ export class AnimeService {
     });
   }
 
-  async findAllMovies(aux : boolean): Promise<Anime[]> {
-    aux = true;
-    const unval = false;
+  async findAllMovies(aux : number): Promise<Anime[]> {
+    let val = false;
+    if(aux == 1) val = true;
     return await this.repository.find({
       where: {
-        filme: aux,
-        estreia: unval,
+        filme: val,
+        estreia: false,
       },
     });
   }
