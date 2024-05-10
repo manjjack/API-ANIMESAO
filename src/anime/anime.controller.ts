@@ -125,7 +125,7 @@ export class AnimeController {
     return this.animeService.findAllAnimesOfYear(ano);
   }
 
-  @Get('animeMovies')
+  @Get('animeMovies/movies')
   async findAllMovies(): Promise<Anime[]> {
     return this.animeService.findAllMovies();
   }
