@@ -52,9 +52,9 @@ export class AnimeService {
     });
   }
 
-  async findAllMovies(aux : number): Promise<Anime[]> {
+  async findAllMovies(aux : string): Promise<Anime[]> {
     let val = false;
-    if(aux == 1) val = true;
+    if(aux == 'all') val = true;
     return await this.repository.find({
       where: {
         filme: val,
@@ -83,10 +83,12 @@ export class AnimeService {
     });
   }
 
-  async animeEmDestaque(){
+  async animeEmDestaque(aux: string){
+    let val = false;
+    if(aux == 'all') val = true;
     return this.repository.find({
       where: {
-          animeDestaque : true,
+          animeDestaque : val,
       },
     })
   }
