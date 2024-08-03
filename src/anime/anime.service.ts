@@ -15,6 +15,15 @@ export class AnimeService {
   async findAll(): Promise<Anime[]> {
     return this.repository.find();
   }
+  
+  // paginacao
+  async findAnime(page: number, limit: number): Promise<Anime[]> {
+    const skip = (page - 1) * limit;
+    return this.repository.find({
+      skip: skip,
+      take: limit,
+    });
+  }
 
   async create(anime: Anime): Promise<Anime> {
     return this.repository.save(anime);

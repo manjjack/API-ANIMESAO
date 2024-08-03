@@ -20,6 +20,15 @@ export class AnimeController {
   async findAll(): Promise<Anime[]> {
     return this.animeService.findAll();
   }
+  
+  //paginacao
+  @Get(':page/:limit')
+  async findAnime(
+    @Param('page') page: number,
+    @Param('limit') limit: number,
+  ): Promise<Anime[]> {
+    return this.animeService.findAnime(page, limit);
+  }
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Anime> {
