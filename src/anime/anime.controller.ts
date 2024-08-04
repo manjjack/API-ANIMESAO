@@ -24,7 +24,7 @@ export class AnimeController {
   }
   
   //paginacao
-  @Get()
+  @Get('page')
   async findAnime(
     @Query('page', ParseIntPipe) page : number,
     @Query('limit', ParseIntPipe) limit: number,
