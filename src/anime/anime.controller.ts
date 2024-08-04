@@ -24,10 +24,13 @@ export class AnimeController {
   //paginacao
   @Get(':page/:limit')
   async findAnime(
-    @Param('page') page: number,
-    @Param('limit') limit: number,
+    @Param('page') page: string, 
+    @Param('limit') limit: string, 
   ): Promise<Anime[]> {
-    return this.animeService.findAnime(page, limit);
+    const pageNumber = parseInt(page, 10); 
+    const limitNumber = parseInt(limit, 10); 
+
+    return this.animeService.findAnime(pageNumber, limitNumber);
   }
 
   @Get(':id')
