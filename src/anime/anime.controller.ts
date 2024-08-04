@@ -8,6 +8,7 @@ import {
   Delete,
   ParseIntPipe,
   BadRequestException,
+  Query,
 } from '@nestjs/common';
 import { AnimeService } from './anime.service';
 import { Anime } from './entities/anime.entity';
@@ -23,12 +24,12 @@ export class AnimeController {
   }
   
   //paginacao
-  @Get(':page/:limit')
+  @Get()
   async findAnime(
-    @Param('page', ParseIntPipe) page: number,
-    @Param('limit', ParseIntPipe) limit: number,
+    @Query('page', ParseIntPipe) page : number,
+    @Query('limit', ParseIntPipe) limit: number,
   ): Promise<Anime[]> {
-    if (isNaN(page) || isNaN(limit) || page < 1 || limit < 1) {
+    if (page < 1 || limit < 1) {
       throw new BadRequestException('Page and limit must be positive numbers');
     }
     return this.animeService.findAnime(page, limit);
