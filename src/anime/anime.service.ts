@@ -76,13 +76,13 @@ export class AnimeService {
   async findAllAnimesOfYear(ano:number): Promise<Anime[]> {
     const dataInicio = new Date(ano, 0, 1); // Primeiro dia do ano
     const dataFim = new Date(ano, 11, 31, 23, 59, 59); // Último segundo do ano
-
+    const pt1 = "Em Lançamento" ;
     return this.repository.find({
       where: [ {
         dataLancamento: Between(dataInicio, dataFim),
         estreia: false,
       }, {
-        status: 'Em Lançamento' || 'Em Lancamento',
+        status: pt1 || 'Em Lancamento',
         estreia: false,
       }],
 
